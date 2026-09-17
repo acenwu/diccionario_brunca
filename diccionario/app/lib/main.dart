@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'database/database_helper.dart';
 import 'models/word.dart';
+import 'screens/word_detail_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -129,14 +130,18 @@ class _SearchScreenState extends State<SearchScreen> {
                                         });
                                       },
                                     ),
-                                    onTap: () {
-                                      // We'll add details view later
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                              '${word.spanish} → ${word.brunca}'),
+                                    onTap: () async {
+                                      await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              WordDetailScreen(word: word),
                                         ),
                                       );
+                                      // isFavorite may have been toggled from
+                                      // the detail screen (same Word instance),
+                                      // so refresh the star icon in the list.
+                                      setState(() {});
                                     },
                                   ),
                                 );
