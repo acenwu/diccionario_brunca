@@ -19,7 +19,8 @@ class SearchScreenState extends State<SearchScreen> {
   final DatabaseHelper _db = DatabaseHelper();
 
   Future<void> _search(String query) async {
-    if (query.isEmpty) {
+    final trimmedQuery = query.trim();
+    if (trimmedQuery.isEmpty) {
       setState(() {
         _results = [];
         _isSearching = false;
@@ -28,7 +29,7 @@ class SearchScreenState extends State<SearchScreen> {
     }
 
     setState(() => _isSearching = true);
-    final results = await _db.searchWords(query);
+    final results = await _db.searchWords(trimmedQuery);
     setState(() {
       _results = results;
       _isSearching = false;
@@ -67,7 +68,7 @@ class SearchScreenState extends State<SearchScreen> {
             TextField(
               controller: _searchController,
               decoration: InputDecoration(
-                hintText: 'Buscar en español...',
+                hintText: 'Buscar en español, brunca o categoría...',
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -93,7 +94,9 @@ class SearchScreenState extends State<SearchScreen> {
                         )
                       : _results.isEmpty
                           ? const Center(
-                              child: Text('Busca una palabra en español'),
+                              child: Text(
+                                'Busca una palabra, su traducción o una categoría',
+                              ),
                             )
                           : ListView.builder(
                               itemCount: _results.length,
@@ -104,7 +107,12 @@ class SearchScreenState extends State<SearchScreen> {
                                       vertical: 4),
                                   child: ListTile(
                                     title: Text(word.spanish),
-                                    subtitle: Text('Brunca: ${word.brunca}'),
+                                    subtitle: Text(
+                                      word.category != null &&
+                                              word.category!.isNotEmpty
+                                          ? 'Brunca: ${word.brunca} · ${word.category}'
+                                          : 'Brunca: ${word.brunca}',
+                                    ),
                                     trailing: IconButton(
                                       icon: Icon(
                                         word.isFavorite

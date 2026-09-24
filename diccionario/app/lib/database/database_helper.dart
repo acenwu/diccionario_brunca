@@ -81,10 +81,13 @@ class DatabaseHelper {
 
   Future<List<Word>> searchWords(String query) async {
     final db = await database;
+    // Bidirectional: matches Spanish or Brunca, and also matches by
+    // category so e.g. typing "Animales" surfaces every word in it.
+    final likeQuery = '%$query%';
     final List<Map<String, dynamic>> maps = await db.query(
       'words',
-      where: 'spanish LIKE ?',
-      whereArgs: ['%$query%'],
+      where: 'spanish LIKE ? OR brunca LIKE ? OR category LIKE ?',
+      whereArgs: [likeQuery, likeQuery, likeQuery],
       limit: 20,
     );
     return List.generate(maps.length, (i) => Word.fromMap(maps[i]));
