@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -11,6 +13,8 @@ class DatabaseHelper {
   DatabaseHelper._internal();
 
   static Database? _database;
+
+  static const String _seedAssetPath = 'assets/data/words.json';
 
   Future<Database> get database async {
     if (_database != null) return _database!;
@@ -52,31 +56,29 @@ class DatabaseHelper {
       )
     ''');
 
-        await db.insert('words', {
-      'spanish': 'Perro',
-      'brunca': 'Aúj',
-      'category': 'Animales',
-    });
-    await db.insert('words', {
-      'spanish': 'Gato',
-      'brunca': 'Bís',
-      'category': 'Animales',
-    });
-    await db.insert('words', {
-      'spanish': 'Pato',
-      'brunca': 'Cratus',
-      'category': 'Animales',
-    });
-    await db.insert('words', {
-      'spanish': 'Vaca',
-      'brunca': 'Turí',
-      'category': 'Animales',
-    });
-    await db.insert('words', {
-      'spanish': 'Caballo',
-      'brunca': 'Sárocra',
-      'category': 'Animales',
-    });
+    await _seedWords(db);
+  }
+
+  // Loads the word list from the bundled JSON asset and inserts it in a
+  // single batch. rootBundle.loadString decodes the asset as UTF-8, so
+  // Brunca's accented vowels, tone marks, or other diacritics come through
+  // intact as long as the JSON file itself is saved as UTF-8 — no manual
+  // encoding/escaping needed on our end.
+  Future<void> _seedWords(Database db) async {
+    final String jsonString = await rootBundle.loadString(_seedAssetPath);
+    final List<dynamic> entries = jsonDecode(jsonString) as List<dynamic>;
+
+    final batch = db.batch();
+    for (final entry in entries) {
+      final map = entry as Map<String, dynamic>;
+      batch.insert('words', {
+        'spanish': map['spanish'],
+        'brunca': map['brunca'],
+        'category': map['category'],
+        'audioFile': map['audioFile'],
+      });
+    }
+    await batch.commit(noResult: true);
   }
 
   Future<List<Word>> searchWords(String query) async {
