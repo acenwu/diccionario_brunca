@@ -1,0 +1,184 @@
+[
+  {
+    "id": "abi-h1",
+    "brunca": "abí",
+    "homograph": 1,
+    "pos": "sust.",
+    "senses": ["persona"]
+  },
+  {
+    "id": "abi-h2",
+    "brunca": "abí",
+    "variants": ["abíj"],
+    "homograph": 2,
+    "pos": "art.",
+    "senses": ["el mismo", "la misma"],
+    "note": "Uso enfático.",
+    "needs_review": true,
+    "review_note": "'art.' no aparece en la leyenda de abreviaturas que tenemos; se asumió 'artículo'."
+  },
+  {
+    "id": "abi-brit",
+    "brunca": "abí brít",
+    "senses": ["persona negra"]
+  },
+  {
+    "id": "abi-drubat",
+    "brunca": "abí drubát",
+    "senses": [
+      "persona colorada",
+      "blanco que no habla español, en particular de origen sajón o germánico"
+    ],
+    "needs_review": true,
+    "review_note": "El libro separa con comas tanto sinónimos como partes de una misma definición; confirmar si son dos acepciones o una sola."
+  },
+  {
+    "id": "abi-suat",
+    "brunca": "abí suát",
+    "senses": ["persona blanca", "hispano"]
+  },
+  {
+    "id": "abishev",
+    "brunca": "abishév",
+    "pos": "adv.",
+    "senses": ["entonces"]
+  },
+  {
+    "id": "abuv",
+    "brunca": "abuv",
+    "pos": "v.",
+    "senses": ["nadar", "emerger"]
+  },
+  {
+    "id": "aguiba",
+    "brunca": "aguibá",
+    "pos": "adv.",
+    "senses": ["luego", "más tarde", "en la tarde"],
+    "examples": [
+      {
+        "brunca": "Aguibá añ osshiv sodíjra",
+        "spanish": "más tarde voy a hacer tortillas"
+      }
+    ],
+    "needs_review": true,
+    "review_note": "En 'añ' no se distingue ñ de n̈ en la imagen; verificar contra el libro (si es n̈, escribir 'an:')."
+  },
+  {
+    "id": "aiv",
+    "brunca": "áiv",
+    "pos": "v.",
+    "senses": ["matar", "cazar"],
+    "phrases": [
+      { "brunca": "yáv áiv", "spanish": "combatir", "literal": "matarse" }
+    ]
+  },
+  {
+    "id": "aivcra",
+    "brunca": "áivcra",
+    "pos": "sust.",
+    "senses": ["guerra"]
+  },
+  {
+    "id": "aivua",
+    "brunca": "áivua",
+    "pos": "adj.",
+    "senses": ["matado"]
+  },
+  {
+    "id": "aivi",
+    "brunca": "aiví",
+    "pos": "sust.",
+    "senses": ["guerrero"]
+  },
+  {
+    "id": "ajc",
+    "brunca": "ájc",
+    "pos": "sust.",
+    "senses": ["fuerza", "violencia"]
+  },
+  {
+    "id": "ajca",
+    "brunca": "ajcá",
+    "pos": "adj.",
+    "senses": ["valeroso", "valiente", "potente"]
+  },
+  {
+    "id": "ajc-baguivshi",
+    "brunca": "ájc baguívshi",
+    "pos": "adj.",
+    "senses": ["cobarde"],
+    "literal": "que no tiene fuerza"
+  },
+  {
+    "id": "ajdi",
+    "brunca": "ajdí",
+    "pos": "adv.",
+    "senses": ["arriba"]
+  },
+  {
+    "id": "ajgov",
+    "brunca": "ajgóv",
+    "pos": "v.",
+    "senses": ["aguantar"],
+    "examples": [
+      { "brunca": "Iv ajgóvcr'iñ", "spanish": "lo aguantó" }
+    ],
+    "needs_review": true,
+    "review_note": "En 'cr'iñ' no se distingue ñ de n̈; verificar contra el libro."
+  },
+  {
+    "id": "ajgoni",
+    "brunca": "ajgoní",
+    "pos": "adj.",
+    "senses": ["valiente"]
+  },
+  {
+    "id": "ajgon",
+    "brunca": "ajgóñ",
+    "pos": "adj.",
+    "senses": ["fuerte"],
+    "needs_review": true,
+    "review_note": "La n final parece llevar diéresis (n̈) pero con esta resolución podría ser ñ; verificar contra el libro (si es n̈, escribir 'ajgón:')."
+  },
+  {
+    "id": "ajgrani-h1",
+    "brunca": "ajgraní",
+    "homograph": 1,
+    "pos": "adj.",
+    "senses": ["valiente"]
+  },
+  {
+    "id": "ajgrani-h2",
+    "brunca": "ajgraní",
+    "homograph": 2,
+    "pos": "sust.",
+    "senses": ["fortificación"],
+    "note": "Según Espíritu Santo Maroto."
+  },
+  {
+    "id": "ajt",
+    "brunca": "ajt",
+    "pos": "v.",
+    "senses": ["quedar", "permanecer"]
+  },
+  {
+    "id": "ajt-h1",
+    "brunca": "ájt",
+    "homograph": 1,
+    "pos": "v.",
+    "senses": ["dejar", "abandonar"]
+  },
+  {
+    "id": "ajt-h2",
+    "brunca": "ájt",
+    "homograph": 2,
+    "pos": "adj.",
+    "senses": ["alto"]
+  },
+  {
+    "id": "ajtca",
+    "brunca": "ájtca",
+    "pos": "adj.",
+    "senses": ["alto", "elevado"]
+  }
+]

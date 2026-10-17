@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../database/database_helper.dart';
 import '../models/word.dart';
+import '../widgets/entry_tile.dart';
 import 'word_detail_screen.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -18,8 +19,14 @@ class SearchScreenState extends State<SearchScreen> {
   bool _isSearching = false;
   final DatabaseHelper _db = DatabaseHelper();
 
+  // Each keystroke starts a search, and searches finish out of order. Only
+  // the most recent one is allowed to update the screen.
+  int _requestId = 0;
+
   Future<void> _search(String query) async {
-    final trimmedQuery = query.trim();
+    final int requestId = ++_requestId;
+    final String trimmedQuery = query.trim();
+
     if (trimmedQuery.isEmpty) {
       setState(() {
         _results = [];
@@ -30,6 +37,7 @@ class SearchScreenState extends State<SearchScreen> {
 
     setState(() => _isSearching = true);
     final results = await _db.searchWords(trimmedQuery);
+    if (!mounted || requestId != _requestId) return;
     setState(() {
       _results = results;
       _isSearching = false;
@@ -39,11 +47,31 @@ class SearchScreenState extends State<SearchScreen> {
   /// Clears the search field and results, back to the blank starting
   /// state. Called when "Buscar" is tapped while already on this tab.
   void reset() {
+    _requestId++; // drop any search still in flight
     _searchController.clear();
     setState(() {
       _results = [];
       _isSearching = false;
     });
+  }
+
+  Future<void> _toggleFavorite(Word word) async {
+    final bool newValue = !word.isFavorite;
+    await _db.toggleFavorite(word.id, newValue);
+    if (!mounted) return;
+    setState(() => word.isFavorite = newValue);
+  }
+
+  Future<void> _openDetail(Word word) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WordDetailScreen(word: word),
+      ),
+    );
+    // isFavorite may have been toggled from the detail screen (same Word
+    // instance), so refresh the star in the list.
+    if (mounted) setState(() {});
   }
 
   @override
@@ -68,7 +96,7 @@ class SearchScreenState extends State<SearchScreen> {
             TextField(
               controller: _searchController,
               decoration: InputDecoration(
-                hintText: 'Buscar en español, brunca o categoría...',
+                hintText: 'Buscar en español o en brunca...',
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -95,55 +123,18 @@ class SearchScreenState extends State<SearchScreen> {
                       : _results.isEmpty
                           ? const Center(
                               child: Text(
-                                'Busca una palabra, su traducción o una categoría',
+                                'Busca una palabra en español o en brunca',
                               ),
                             )
                           : ListView.builder(
                               itemCount: _results.length,
                               itemBuilder: (context, index) {
                                 final word = _results[index];
-                                return Card(
-                                  margin: const EdgeInsets.symmetric(
-                                      vertical: 4),
-                                  child: ListTile(
-                                    title: Text(word.spanish),
-                                    subtitle: Text(
-                                      word.category != null &&
-                                              word.category!.isNotEmpty
-                                          ? 'Brunca: ${word.brunca} · ${word.category}'
-                                          : 'Brunca: ${word.brunca}',
-                                    ),
-                                    trailing: IconButton(
-                                      icon: Icon(
-                                        word.isFavorite
-                                            ? Icons.star
-                                            : Icons.star_border,
-                                        color: word.isFavorite
-                                            ? Colors.amber
-                                            : Colors.grey,
-                                      ),
-                                      onPressed: () async {
-                                        await _db.toggleFavorite(
-                                            word.id!, !word.isFavorite);
-                                        setState(() {
-                                          word.isFavorite = !word.isFavorite;
-                                        });
-                                      },
-                                    ),
-                                    onTap: () async {
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              WordDetailScreen(word: word),
-                                        ),
-                                      );
-                                      // isFavorite may have been toggled from
-                                      // the detail screen (same Word instance),
-                                      // so refresh the star icon in the list.
-                                      setState(() {});
-                                    },
-                                  ),
+                                return EntryTile(
+                                  word: word,
+                                  onTap: () => _openDetail(word),
+                                  onToggleFavorite: () =>
+                                      _toggleFavorite(word),
                                 );
                               },
                             ),

@@ -1,32 +1,27 @@
 [
-  {
-    "spanish": "Perro",
-    "brunca": "Aúj",
-    "category": "Animales",
-    "audioFile": null
-  },
-  {
-    "spanish": "Gato",
-    "brunca": "Bís",
-    "category": "Animales",
-    "audioFile": null
-  },
-  {
-    "spanish": "Pato",
-    "brunca": "Cratus",
-    "category": "Animales",
-    "audioFile": null
-  },
-  {
-    "spanish": "Vaca",
-    "brunca": "Turí",
-    "category": "Animales",
-    "audioFile": null
-  },
-  {
-    "spanish": "Caballo",
-    "brunca": "Sárocra",
-    "category": "Animales",
-    "audioFile": null
-  }
+{"id":"abi-h1","brunca":"abí","homograph":1,"pos":"sust.","posLabel":"sustantivo","senses":["persona"]},
+{"id":"abi-h2","brunca":"abí","variants":["abíj"],"homograph":2,"pos":"art.","posLabel":"artículo","senses":["el mismo","la misma"],"note":"Uso enfático."},
+{"id":"abi-brit","brunca":"abí brít","senses":["persona negra"]},
+{"id":"abi-drubat","brunca":"abí drubát","senses":["persona colorada","blanco que no habla español, en particular de origen sajón o germánico"]},
+{"id":"abi-suat","brunca":"abí suát","senses":["persona blanca","hispano"]},
+{"id":"abishev","brunca":"abishéᵛ","pos":"adv.","posLabel":"adverbio","senses":["entonces"]},
+{"id":"abuv","brunca":"abuᵛ","pos":"v.","posLabel":"verbo","senses":["nadar","emerger"]},
+{"id":"aguiba","brunca":"aguibá","pos":"adv.","posLabel":"adverbio","senses":["luego","más tarde","en la tarde"],"examples":[{"brunca":"Aguibá añ osshiᵛ sodíjra","spanish":"más tarde voy a hacer tortillas"}]},
+{"id":"aiv","brunca":"áiᵛ","pos":"v.","posLabel":"verbo","senses":["matar","cazar"],"phrases":[{"brunca":"yáᵛ áiᵛ","spanish":"combatir","literal":"matarse"}]},
+{"id":"aivcra","brunca":"áiᵛcra","pos":"sust.","posLabel":"sustantivo","senses":["guerra"]},
+{"id":"aivua","brunca":"áiᵛua","pos":"adj.","posLabel":"adjetivo","senses":["matado"]},
+{"id":"aivi","brunca":"aiᵛí","pos":"sust.","posLabel":"sustantivo","senses":["guerrero"]},
+{"id":"ajc","brunca":"ájc","pos":"sust.","posLabel":"sustantivo","senses":["fuerza","violencia"]},
+{"id":"ajca","brunca":"ajcá","pos":"adj.","posLabel":"adjetivo","senses":["valeroso","valiente","potente"]},
+{"id":"ajc-baguivshi","brunca":"ájc baguíᵛshi","pos":"adj.","posLabel":"adjetivo","senses":["cobarde"],"literal":"que no tiene fuerza"},
+{"id":"ajdi","brunca":"ajdí","pos":"adv.","posLabel":"adverbio","senses":["arriba"]},
+{"id":"ajgov","brunca":"ajgóᵛ","pos":"v.","posLabel":"verbo","senses":["aguantar"],"examples":[{"brunca":"Iᵛ ajgóᵛcr'iñ","spanish":"lo aguantó"}]},
+{"id":"ajgoni","brunca":"ajgoní","pos":"adj.","posLabel":"adjetivo","senses":["valiente"]},
+{"id":"ajgon","brunca":"ajgóñ","pos":"adj.","posLabel":"adjetivo","senses":["fuerte"]},
+{"id":"ajgrani-h1","brunca":"ajgraní","homograph":1,"pos":"adj.","posLabel":"adjetivo","senses":["valiente"]},
+{"id":"ajgrani-h2","brunca":"ajgraní","homograph":2,"pos":"sust.","posLabel":"sustantivo","senses":["fortificación"],"note":"Según Espíritu Santo Maroto."},
+{"id":"ajt","brunca":"ajt","pos":"v.","posLabel":"verbo","senses":["quedar","permanecer"]},
+{"id":"ajt-h1","brunca":"ájt","homograph":1,"pos":"v.","posLabel":"verbo","senses":["dejar","abandonar"]},
+{"id":"ajt-h2","brunca":"ájt","homograph":2,"pos":"adj.","posLabel":"adjetivo","senses":["alto"]},
+{"id":"ajtca","brunca":"ájtca","pos":"adj.","posLabel":"adjetivo","senses":["alto","elevado"]}
 ]

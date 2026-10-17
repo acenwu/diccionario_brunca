@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../database/database_helper.dart';
 import '../models/word.dart';
+import '../widgets/entry_tile.dart';
 import 'word_detail_screen.dart';
 
 class FavoritesScreen extends StatefulWidget {
@@ -27,6 +28,7 @@ class FavoritesScreenState extends State<FavoritesScreen> {
   Future<void> refresh() async {
     setState(() => _isLoading = true);
     final favorites = await _db.getFavorites();
+    if (!mounted) return;
     setState(() {
       _favorites = favorites;
       _isLoading = false;
@@ -34,11 +36,24 @@ class FavoritesScreenState extends State<FavoritesScreen> {
   }
 
   Future<void> _removeFavorite(Word word) async {
-    await _db.toggleFavorite(word.id!, false);
+    await _db.toggleFavorite(word.id, false);
+    if (!mounted) return;
     setState(() {
       word.isFavorite = false;
       _favorites.removeWhere((w) => w.id == word.id);
     });
+  }
+
+  Future<void> _openDetail(Word word) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WordDetailScreen(word: word),
+      ),
+    );
+    // The word may have been unfavorited from the detail screen, so
+    // re-query to stay accurate.
+    if (mounted) refresh();
   }
 
   @override
@@ -69,29 +84,10 @@ class FavoritesScreenState extends State<FavoritesScreen> {
                     itemCount: _favorites.length,
                     itemBuilder: (context, index) {
                       final word = _favorites[index];
-                      return Card(
-                        margin: const EdgeInsets.symmetric(vertical: 4),
-                        child: ListTile(
-                          title: Text(word.spanish),
-                          subtitle: Text('Brunca: ${word.brunca}'),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.star, color: Colors.amber),
-                            tooltip: 'Quitar de favoritos',
-                            onPressed: () => _removeFavorite(word),
-                          ),
-                          onTap: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    WordDetailScreen(word: word),
-                              ),
-                            );
-                            // The word may have been unfavorited from the
-                            // detail screen, so re-query to stay accurate.
-                            refresh();
-                          },
-                        ),
+                      return EntryTile(
+                        word: word,
+                        onTap: () => _openDetail(word),
+                        onToggleFavorite: () => _removeFavorite(word),
                       );
                     },
                   ),
