@@ -13,9 +13,7 @@
     "homograph": 2,
     "pos": "art.",
     "senses": ["el mismo", "la misma"],
-    "note": "Uso enfático.",
-    "needs_review": true,
-    "review_note": "'art.' no aparece en la leyenda de abreviaturas que tenemos; se asumió 'artículo'."
+    "note": "Uso enfático."
   },
   {
     "id": "abi-brit",
@@ -28,9 +26,7 @@
     "senses": [
       "persona colorada",
       "blanco que no habla español, en particular de origen sajón o germánico"
-    ],
-    "needs_review": true,
-    "review_note": "El libro separa con comas tanto sinónimos como partes de una misma definición; confirmar si son dos acepciones o una sola."
+    ]
   },
   {
     "id": "abi-suat",
@@ -56,12 +52,10 @@
     "senses": ["luego", "más tarde", "en la tarde"],
     "examples": [
       {
-        "brunca": "Aguibá añ osshiv sodíjra",
-        "spanish": "más tarde voy a hacer tortillas"
+        "brunca": "Aguibá an: osshiv sodíjra",
+        "spanish": "Más tarde voy a hacer tortillas"
       }
-    ],
-    "needs_review": true,
-    "review_note": "En 'añ' no se distingue ñ de n̈ en la imagen; verificar contra el libro (si es n̈, escribir 'an:')."
+    ]
   },
   {
     "id": "aiv",
@@ -83,6 +77,13 @@
     "brunca": "áivua",
     "pos": "adj.",
     "senses": ["matado"]
+  },
+  {
+    "id": "aivua-b",
+    "brunca": "aivuá",
+    "pos": "adj.",
+    "senses": ["veneno"],
+    "literal": "que no tiene fuerza"
   },
   {
     "id": "aivi",
@@ -121,10 +122,8 @@
     "pos": "v.",
     "senses": ["aguantar"],
     "examples": [
-      { "brunca": "Iv ajgóvcr'iñ", "spanish": "lo aguantó" }
-    ],
-    "needs_review": true,
-    "review_note": "En 'cr'iñ' no se distingue ñ de n̈; verificar contra el libro."
+      { "brunca": "Iv ajgóvcr'in:", "spanish": "lo aguantó" }
+    ]
   },
   {
     "id": "ajgoni",
@@ -134,11 +133,9 @@
   },
   {
     "id": "ajgon",
-    "brunca": "ajgóñ",
+    "brunca": "ajgón:",
     "pos": "adj.",
-    "senses": ["fuerte"],
-    "needs_review": true,
-    "review_note": "La n final parece llevar diéresis (n̈) pero con esta resolución podría ser ñ; verificar contra el libro (si es n̈, escribir 'ajgón:')."
+    "senses": ["fuerte"]
   },
   {
     "id": "ajgrani-h1",
